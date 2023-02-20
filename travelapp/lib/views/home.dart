@@ -97,9 +97,10 @@ class _HomePageState extends State<HomePage> {
                               await getPOI(globalController.controller.text)
                                   .then((value) {
                                 locationData.locationData.value = value;
+                                print(value);
                                 globalController.changeLoading();
                                 Get.to(FeedPage());
-                                print(locationData.locationData.value.food!.length);
+                                // print(locationData.locationData.value.food!.length);
                               });
                             },
                             tooltip: 'Show me the value!',

@@ -4,6 +4,7 @@ import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/controller/list_controller.dart';
+import 'package:travelapp/views/error.dart';
 
 class FeedPage extends StatelessWidget {
   FeedPage({super.key});
@@ -11,7 +12,7 @@ class FeedPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     print(locationData.locationData.value.food!.length);
-    return Scaffold(
+    return locationData.locationData.value.poi!.isEmpty?const ErrorPage():Scaffold(
       body: Container(
         decoration: const BoxDecoration(
             image: DecorationImage(
@@ -29,8 +30,6 @@ class FeedPage extends StatelessWidget {
                     child: Column(
                   children: [
                     ClipRRect(
-                      // ignore: sort_child_properties_last
-
                       child: Image.network(locationData
                           .locationData.value.poi![index].fotoUrl
                           .toString()),

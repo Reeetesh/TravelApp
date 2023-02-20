@@ -5,7 +5,6 @@ module.exports = async function (location) {
   try {
     const browser = await puppeteer.launch({
       executablePath: "/usr/bin/chromium-browser",
-      
     });
     const page = await browser.newPage();
     await page.goto(
@@ -24,6 +23,7 @@ module.exports = async function (location) {
       });
       return results;
     });
+    obj["Point_of_Interests"]=[];
     if (data.length > 0) obj["Point_of_Interests"] = data;
     // console.log(data);
     await browser.close();

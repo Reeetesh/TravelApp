@@ -4,7 +4,6 @@ let obj = require("../data/object")
 module.exports = async function hotels(location) {
   try {
     const browser = await puppeteer.launch({
-      executablePath: "/usr/bin/chromium-browser",
       
     });
     const page = await browser.newPage();
@@ -25,6 +24,7 @@ module.exports = async function hotels(location) {
       });
       return results;
     });
+    obj["Hotels"]=[];
     if (data.length > 0) obj["Hotels"] = data;
     await browser.close();
   } catch (error) {

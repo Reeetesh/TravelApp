@@ -24,8 +24,10 @@ module.exports = async function food(location) {
           title: items.querySelector(".notranslate").innerHTML,
         });
       });
+      // console.log(results);
       return results;
     });
+    obj["Food"]=[];
     if (data.length > 0) obj["Food"] = data;
     // await page.screenshot({ path: 'screenshot.png' })
 
