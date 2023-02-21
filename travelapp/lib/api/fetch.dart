@@ -10,7 +10,9 @@ Future<LocationData> getPOI(String? location) async {
   List<PointOfInterest> listPOI = [];
   List<Food> listFood = [];
   List<Hotels> listHotels = [];
+
   var response = await http.get(Uri.parse(apiURL(location)));
+
   if (response.statusCode == 200) {
     var jsonString = jsonDecode(response.body);
     var restPOI = jsonString["Point_of_Interests"];
@@ -30,6 +32,6 @@ Future<LocationData> getPOI(String? location) async {
 
 String apiURL(var location) {
   String url;
-  url = "http://10.0.2.2:5000/travel?id=$location";
+  url = "http://192.168.20.179:3000/travel?id=$location";
   return url;
 }

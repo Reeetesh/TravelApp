@@ -43,7 +43,7 @@ app.get("/travel", async (req, res) => {
       await hotels(location);
       console.log("Serving from web");
       res.send(obj);
-      await client.set(location.toLowerCase(), JSON.stringify(obj));
+      // await client.set(location.toLowerCase(), JSON.stringify(obj));
     }
   } catch (err) {
     res.status(500).json(err);
