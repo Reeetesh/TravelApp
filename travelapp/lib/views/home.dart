@@ -41,7 +41,7 @@ class _HomePageState extends State<HomePage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 20, horizontal: 20),
                       child: Column(
-                        mainAxisAlignment: MainAxisAlignment.end,
+                        mainAxisAlignment: MainAxisAlignment.center,
                         // ignore: prefer_const_literals_to_create_immutables
                         children: [
                           const Text(
@@ -72,10 +72,16 @@ class _HomePageState extends State<HomePage> {
                                 filled: true,
                                 fillColor: Colors.white,
                                 contentPadding: const EdgeInsets.symmetric(
-                                    horizontal: 15, vertical: 15),
-                                labelText: "Enter your destination",
+                                  horizontal: 15,
+                                  vertical: 15,
+                                ),
+                                hintText: "Enter your destination",
                                 labelStyle: const TextStyle(
-                                    fontSize: 17, color: Colors.blue),
+                                  height: 4,
+                                  fontSize: 17,
+                                  color: Colors.black,
+                                  fontWeight: FontWeight.bold,
+                                ),
                                 enabledBorder: OutlineInputBorder(
                                     borderRadius: BorderRadius.circular(10),
                                     borderSide: const BorderSide(
@@ -91,15 +97,14 @@ class _HomePageState extends State<HomePage> {
                           FloatingActionButton(
                             // When the user presses the button, show an alert dialog containing
                             // the text that the user has entered into the text field.
-                            onPressed: () async{
+                            onPressed: () async {
                               globalController.changeLoading();
                               print(globalController.controller.text);
                               await getPOI(globalController.controller.text)
                                   .then((value) {
                                 locationData.locationData.value = value;
-                                print(value);
                                 globalController.changeLoading();
-                                Get.to(FeedPage());
+                                Get.to(() => FeedPage());
                                 // print(locationData.locationData.value.food!.length);
                               });
                             },

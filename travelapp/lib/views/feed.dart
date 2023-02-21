@@ -36,15 +36,23 @@ class _FeedPageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     return locationData.locationData.value.poi!.isEmpty
         ? const ErrorPage()
-        : SingleChildScrollView(
-            child: Column(
-              children: [
-                for (final poi in locationData.locationData.value.poi!)
-                  LocationListItem(
-                    imageUrl: poi.fotoUrl!,
-                    name: poi.title!.split(". ")[1],
-                  )
-              ],
+        : Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                image: AssetImage("assets/feed3.jpg"),
+                fit: BoxFit.scaleDown,
+              ),
+            ),
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  for (final poi in locationData.locationData.value.poi!)
+                    LocationListItem(
+                      imageUrl: poi.fotoUrl!,
+                      name: poi.title!.split(". ")[1],
+                    )
+                ],
+              ),
             ),
           );
   }
