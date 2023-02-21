@@ -32,6 +32,6 @@ Future<LocationData> getPOI(String? location) async {
 
 String apiURL(var location) {
   String url;
-  url = "http://192.168.20.179:3000/travel?id=$location";
+  url = "http://192.168.20.174:3000/travel?id=$location";
   return url;
 }

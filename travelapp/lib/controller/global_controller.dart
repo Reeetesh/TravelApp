@@ -3,7 +3,6 @@ import 'package:get/get.dart';
 import 'package:travelapp/api/fetch.dart';
 import 'package:travelapp/models/location_data.dart';
 import 'package:shared_preferences/shared_preferences.dart';
-import 'package:travelapp/api/fetch.dart';
 import 'package:travelapp/views/home.dart';
 
 class GlobalController extends GetxController {
@@ -26,5 +25,4 @@ class GlobalController extends GetxController {
     Get.to(HomePage());
   }
 // instances for them to be called
-
 }

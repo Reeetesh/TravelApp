@@ -7,7 +7,7 @@ module.exports = async function food(location) {
   }
   try {
     const browser = await puppeteer.launch({
-      executablePath: "/usr/bin/chromium-browser",
+      // executablePath: "/usr/bin/chromium-browser",
     
     });
     const page = await browser.newPage();
