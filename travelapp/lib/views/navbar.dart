@@ -18,6 +18,10 @@ class _NavBarState extends State<NavBar> {
   List<Widget> pageList = [
     FeedPage(),
     Icon(
+      Icons.favorite_outlined,
+      size: 150,
+    ),
+    Icon(
       Icons.settings,
       size: 150,
     ),
@@ -38,9 +42,16 @@ class _NavBarState extends State<NavBar> {
             label: '',
           ),
           BottomNavigationBarItem(
-            icon: Icon(
-              Icons.settings,
-              size: 35,
+            icon: Image.asset(
+              "assets/favourite.png",
+              height: 35,
+            ),
+            label: '',
+          ),
+          BottomNavigationBarItem(
+            icon: Image.asset(
+              "assets/settings.png",
+              height: 35,
             ),
             label: '',
           ),

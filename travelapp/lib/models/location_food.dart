@@ -1,5 +1,3 @@
-import 'package:get/get_connect/http/src/utils/utils.dart';
-
 class Food {
   String? fotoUrl;
   String? title;
@@ -7,7 +5,7 @@ class Food {
 
   factory Food.fromJson(Map<String, dynamic> json) {
     return Food(
-      fotoUrl: json["foto_url"] as String,
+      fotoUrl: json["foto_url"] ?? "xyz" as String,
       title: json["title"] as String,
     );
   }

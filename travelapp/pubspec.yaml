@@ -73,6 +73,8 @@ flutter:
     - assets/feed3.jpg
     - animations/
     - assets/beach.png
+    - assets/favourite.png
+    - assets/settings.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

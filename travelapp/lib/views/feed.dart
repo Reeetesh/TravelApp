@@ -91,60 +91,85 @@ class LocationListItem extends StatelessWidget {
 
   void _detailCard(context) {
     showModalBottomSheet(
-        backgroundColor: Color.fromARGB(255, 219, 222, 226),
+        isScrollControlled: true,
+        backgroundColor: const Color.fromARGB(255, 219, 222, 226),
         enableDrag: true,
-        shape: RoundedRectangleBorder(
+        shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
               topRight: Radius.circular(15), topLeft: Radius.circular(15)),
         ),
         context: context,
-        builder: (BuildContext bc) {
+        builder: (BuildContext context) {
           return Container(
+            height: MediaQuery.of(context).size.height * 0.65,
             clipBehavior: Clip.none,
             child: Stack(
               alignment: AlignmentDirectional.topCenter,
               clipBehavior: Clip.none,
               children: [
+                Positioned(
+                  top: -30,
+                  child: Container(
+                    width: 23,
+                    height: 23,
+                    decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
+                      color: const Color.fromARGB(255, 240, 229, 229)
+                          .withOpacity(0.5),
+                    ),
+                    child: GestureDetector(
+                      child: const Icon(
+                        Icons.close_rounded,
+                        size: 23,
+                        color: Color.fromARGB(255, 51, 51, 51),
+                      ),
+                    ),
+                  ),
+                ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.80,
-                  child: Padding(
-                    padding: const EdgeInsets.all(0),
-                    child: Column(
-                      children: [
-                        Column(
-                          children: [
-                            Stack(
-                              children: [
-                                ClipRRect(
-                                  borderRadius: const BorderRadius.only(
-                                    topLeft: Radius.circular(15),
-                                    topRight: Radius.circular(15),
-                                  ),
-                                  child: Image.network(
-                                    imageUrl,
-                                    fit: BoxFit.cover,
-                                    width: 411,
-                                    height: 300,
-                                  ),
+                  child: Column(
+                    children: [
+                      Column(
+                        children: [
+                          Stack(
+                            children: [
+                              ClipRRect(
+                                borderRadius: const BorderRadius.only(
+                                  topLeft: Radius.circular(15),
+                                  topRight: Radius.circular(15),
                                 ),
-                              ],
-                            ),
-                            Container(
+                                child: Image.network(
+                                  imageUrl,
+                                  fit: BoxFit.cover,
+                                  width: 411,
+                                  height: 300,
+                                ),
+                              ),
+                            ],
+                          ),
+                          // TITLE
+                          Padding(
+                            padding: const EdgeInsets.only(left: 7, right: 7),
+                            child: Container(
                               alignment: Alignment.topLeft,
-                              padding: const EdgeInsets.only(left: 8),
+                              padding: const EdgeInsets.only(left: 6),
                               child: Text(name,
                                   style: GoogleFonts.montserrat(
                                     textStyle: const TextStyle(
                                       height: 1.8,
                                       fontWeight: FontWeight.w900,
-                                      fontSize: 18,
+                                      fontSize: 20,
                                     ),
                                   )),
                             ),
-                            Container(
+                          ),
+                          // DESC
+                          Padding(
+                            padding: const EdgeInsets.only(left: 7, right: 7),
+                            child: Container(
                               alignment: Alignment.topLeft,
                               padding: const EdgeInsets.only(left: 6),
-                              child: Text(desc,
+                              child: Text(desc.substring(1),
                                   style: GoogleFonts.montserrat(
                                     textStyle: const TextStyle(
                                       fontWeight: FontWeight.w500,
@@ -152,25 +177,10 @@ class LocationListItem extends StatelessWidget {
                                     ),
                                   )),
                             ),
-                          ],
-                        ),
-                      ],
-                    ),
-                  ),
-                ),
-                Positioned(
-                  top: 3,
-                  child: Container(
-                    width: 50,
-                    height: 7,
-                    decoration: BoxDecoration(
-                      border: Border.all(
-                        color: Colors.black,
-                        width: 1,
+                          ),
+                        ],
                       ),
-                      borderRadius: BorderRadius.circular(15),
-                      color: Color.fromARGB(255, 214, 210, 210),
-                    ),
+                    ],
                   ),
                 ),
               ],
