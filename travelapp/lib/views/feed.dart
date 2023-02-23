@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp/controller/list_controller.dart';
-import 'package:travelapp/models/location_data.dart';
 import 'package:travelapp/views/error.dart';
 
 class FeedPage extends StatefulWidget {
@@ -37,24 +37,16 @@ class _FeedPageState extends State<FeedPage> {
   Widget build(BuildContext context) {
     return locationData.locationData.value.poi!.isEmpty
         ? const ErrorPage()
-        : Container(
-            decoration: const BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage("assets/feed3.jpg"),
-                fit: BoxFit.scaleDown,
-              ),
-            ),
-            child: SingleChildScrollView(
-              child: Column(
-                children: [
-                  for (final poi in locationData.locationData.value.poi!)
-                    LocationListItem(
-                      imageUrl: poi.fotoUrl!,
-                      name: poi.title!.split(". ")[1],
-                      desc: poi.desc!,
-                    )
-                ],
-              ),
+        : SingleChildScrollView(
+            child: Column(
+              children: [
+                for (final poi in locationData.locationData.value.poi!)
+                  LocationListItem(
+                    imageUrl: poi.fotoUrl!,
+                    name: poi.title!.split(". ")[1],
+                    desc: poi.desc!,
+                  )
+              ],
             ),
           );
   }
@@ -80,9 +72,7 @@ class LocationListItem extends StatelessWidget {
         aspectRatio: 16 / 9,
         child: GestureDetector(
           onTap: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => _buildPopupDialog(context));
+            _detailCard(context);
           },
           child: ClipRRect(
             borderRadius: BorderRadius.circular(16),
@@ -99,44 +89,100 @@ class LocationListItem extends StatelessWidget {
     );
   }
 
-  Widget _buildPopupDialog(BuildContext context) {
-    return AlertDialog(
-      content: Column(
-        mainAxisSize: MainAxisSize.min,
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Stack(
-            children: [
-              Container(
-                  alignment: Alignment.center,
-                  child: Image.network(
-                    imageUrl,
-                    fit: BoxFit.cover,
-                  )),
-              Container(alignment: Alignment.center, child: Text(name)),
-              Container(
-                alignment: Alignment.bottomCenter,
-                child: Text(desc),
-              )
-            ],
-          )
-        ],
-      ),
-      actions: <Widget>[
-        TextButton(
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          child: const Text('Close'),
+  void _detailCard(context) {
+    showModalBottomSheet(
+        backgroundColor: Color.fromARGB(255, 219, 222, 226),
+        enableDrag: true,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.only(
+              topRight: Radius.circular(15), topLeft: Radius.circular(15)),
         ),
-      ],
-    );
+        context: context,
+        builder: (BuildContext bc) {
+          return Container(
+            clipBehavior: Clip.none,
+            child: Stack(
+              alignment: AlignmentDirectional.topCenter,
+              clipBehavior: Clip.none,
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.80,
+                  child: Padding(
+                    padding: const EdgeInsets.all(0),
+                    child: Column(
+                      children: [
+                        Column(
+                          children: [
+                            Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15),
+                                  ),
+                                  child: Image.network(
+                                    imageUrl,
+                                    fit: BoxFit.cover,
+                                    width: 411,
+                                    height: 300,
+                                  ),
+                                ),
+                              ],
+                            ),
+                            Container(
+                              alignment: Alignment.topLeft,
+                              padding: const EdgeInsets.only(left: 8),
+                              child: Text(name,
+                                  style: GoogleFonts.montserrat(
+                                    textStyle: const TextStyle(
+                                      height: 1.8,
+                                      fontWeight: FontWeight.w900,
+                                      fontSize: 18,
+                                    ),
+                                  )),
+                            ),
+                            Container(
+                              alignment: Alignment.topLeft,
+                              padding: const EdgeInsets.only(left: 6),
+                              child: Text(desc,
+                                  style: GoogleFonts.montserrat(
+                                    textStyle: const TextStyle(
+                                      fontWeight: FontWeight.w500,
+                                      fontSize: 14,
+                                    ),
+                                  )),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                Positioned(
+                  top: 3,
+                  child: Container(
+                    width: 50,
+                    height: 7,
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(15),
+                      color: Color.fromARGB(255, 214, 210, 210),
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          );
+        });
   }
 
   Widget _buildParallaxBackground(BuildContext context) {
     return Flow(
       delegate: ParallaxFlowDelegate(
-        scrollable: Scrollable.of(context)!,
+        scrollable: Scrollable.of(context),
         listItemContext: context,
         backgroundImageKey: _backgroundImageKey,
       ),
@@ -175,11 +221,13 @@ class LocationListItem extends StatelessWidget {
         children: [
           Text(
             name,
-            style: const TextStyle(
-              decoration: TextDecoration.none,
-              color: Colors.white,
-              fontSize: 16,
-              fontWeight: FontWeight.bold,
+            style: GoogleFonts.montserrat(
+              textStyle: const TextStyle(
+                decoration: TextDecoration.none,
+                color: Colors.white,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
           ),
           // Text(
@@ -265,13 +313,13 @@ class Parallax extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RenderParallax(scrollable: Scrollable.of(context)!);
+    return RenderParallax(scrollable: Scrollable.of(context));
   }
 
   @override
   void updateRenderObject(
       BuildContext context, covariant RenderParallax renderObject) {
-    renderObject.scrollable = Scrollable.of(context)!;
+    renderObject.scrollable = Scrollable.of(context);
   }
 }
 

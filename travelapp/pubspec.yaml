@@ -40,6 +40,7 @@ dependencies:
   shared_preferences: ^2.0.17
   lottie: ^2.2.0
   scroll_snap_list: ^0.9.1
+  google_fonts: ^4.0.3
 
 dev_dependencies:
   flutter_test:
@@ -71,6 +72,7 @@ flutter:
     - assets/feed2.jpg
     - assets/feed3.jpg
     - animations/
+    - assets/beach.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

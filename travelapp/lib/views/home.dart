@@ -6,6 +6,7 @@ import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travelapp/controller/list_controller.dart';
 import 'package:travelapp/views/feed.dart';
+import 'package:travelapp/views/navbar.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({super.key});
@@ -104,7 +105,7 @@ class _HomePageState extends State<HomePage> {
                                   .then((value) {
                                 locationData.locationData.value = value;
                                 globalController.changeLoading();
-                                Get.to(() => FeedPage());
+                                Get.to(() => NavBar());
                                 // print(locationData.locationData.value.food!.length);
                               });
                             },
