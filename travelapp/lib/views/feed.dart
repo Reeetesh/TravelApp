@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:travelapp/controller/list_controller.dart';
+import 'package:travelapp/models/location_data.dart';
 import 'package:travelapp/views/error.dart';
 
 class FeedPage extends StatefulWidget {
@@ -37,7 +38,7 @@ class _FeedPageState extends State<FeedPage> {
     return locationData.locationData.value.poi!.isEmpty
         ? const ErrorPage()
         : Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               image: DecorationImage(
                 image: AssetImage("assets/feed3.jpg"),
                 fit: BoxFit.scaleDown,
@@ -50,6 +51,7 @@ class _FeedPageState extends State<FeedPage> {
                     LocationListItem(
                       imageUrl: poi.fotoUrl!,
                       name: poi.title!.split(". ")[1],
+                      desc: poi.desc!,
                     )
                 ],
               ),
@@ -59,14 +61,15 @@ class _FeedPageState extends State<FeedPage> {
 }
 
 class LocationListItem extends StatelessWidget {
-  LocationListItem({
-    super.key,
-    required this.imageUrl,
-    required this.name,
-  });
+  LocationListItem(
+      {super.key,
+      required this.imageUrl,
+      required this.name,
+      required this.desc});
 
   final String imageUrl;
   final String name;
+  final String desc;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
   @override
@@ -75,24 +78,65 @@ class LocationListItem extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 16),
       child: AspectRatio(
         aspectRatio: 16 / 9,
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(16),
-          child: Stack(
-            children: [
-              _buildParallaxBackground(context),
-              _buildGradient(),
-              _buildTitleAndSubtitle(),
-            ],
+        child: GestureDetector(
+          onTap: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) => _buildPopupDialog(context));
+          },
+          child: ClipRRect(
+            borderRadius: BorderRadius.circular(16),
+            child: Stack(
+              children: [
+                _buildParallaxBackground(context),
+                _buildGradient(),
+                _buildTitleAndSubtitle(),
+              ],
+            ),
           ),
         ),
       ),
     );
   }
 
+  Widget _buildPopupDialog(BuildContext context) {
+    return AlertDialog(
+      content: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: <Widget>[
+          Stack(
+            children: [
+              Container(
+                  alignment: Alignment.center,
+                  child: Image.network(
+                    imageUrl,
+                    fit: BoxFit.cover,
+                  )),
+              Container(alignment: Alignment.center, child: Text(name)),
+              Container(
+                alignment: Alignment.bottomCenter,
+                child: Text(desc),
+              )
+            ],
+          )
+        ],
+      ),
+      actions: <Widget>[
+        TextButton(
+          onPressed: () {
+            Navigator.of(context).pop();
+          },
+          child: const Text('Close'),
+        ),
+      ],
+    );
+  }
+
   Widget _buildParallaxBackground(BuildContext context) {
     return Flow(
       delegate: ParallaxFlowDelegate(
-        scrollable: Scrollable.of(context),
+        scrollable: Scrollable.of(context)!,
         listItemContext: context,
         backgroundImageKey: _backgroundImageKey,
       ),
@@ -221,13 +265,13 @@ class Parallax extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RenderParallax(scrollable: Scrollable.of(context));
+    return RenderParallax(scrollable: Scrollable.of(context)!);
   }
 
   @override
   void updateRenderObject(
       BuildContext context, covariant RenderParallax renderObject) {
-    renderObject.scrollable = Scrollable.of(context);
+    renderObject.scrollable = Scrollable.of(context)!;
   }
 }
 

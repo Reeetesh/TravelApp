@@ -19,11 +19,12 @@ module.exports = async function (location) {
             .querySelector(".card-img-top")
             .getAttribute("data-original"),
           title: items.querySelector(".card-heading").innerHTML,
+          desc: items.querySelector(".card-text").innerHTML,
         });
       });
       return results;
     });
-    obj["Point_of_Interests"]=[];
+    obj["Point_of_Interests"] = [];
     if (data.length > 0) obj["Point_of_Interests"] = data;
     // console.log(data);
     await browser.close();
