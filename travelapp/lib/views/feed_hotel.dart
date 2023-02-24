@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
@@ -5,14 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp/controller/list_controller.dart';
 import 'package:travelapp/views/error.dart';
 
-class FeedPage extends StatefulWidget {
-  const FeedPage({super.key});
+class FeedPageHotel extends StatefulWidget {
+  const FeedPageHotel({super.key});
 
   @override
-  State<FeedPage> createState() => _FeedPageState();
+  State<FeedPageHotel> createState() => _FeedPageHotelState();
 }
 
-class _FeedPageState extends State<FeedPage> {
+class _FeedPageHotelState extends State<FeedPageHotel> {
   ListController locationData = Get.find();
 
   final controller = ScrollController();
@@ -35,33 +36,51 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
-    return locationData.locationData.value.poi!.isEmpty
+    return locationData.locationData.value.hotel!.isEmpty
         ? const ErrorPage()
-        : SingleChildScrollView(
-            child: Column(
-              children: [
-                for (final poi in locationData.locationData.value.poi!)
-                  LocationListItem(
-                    imageUrl: poi.fotoUrl!,
-                    name: poi.title!.split(". ")[1],
-                    desc: poi.desc!,
-                  )
-              ],
+        : Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0.5,
+              title: const Text(
+                "Hotels",
+                style: TextStyle(
+                  color: Colors.black,
+                ),
+              ),
+            ),
+            backgroundColor: Colors.white,
+            body: CupertinoScrollbar(
+              thumbVisibility: true,
+              thickness: 10,
+              radius: const Radius.circular(10),
+              scrollbarOrientation: ScrollbarOrientation.right,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (final hotel in locationData.locationData.value.hotel!)
+                      LocationListItem(
+                        imageUrl: hotel.fotoUrl!,
+                        name: hotel.title!.split(". ")[1],
+                      )
+                  ],
+                ),
+              ),
             ),
           );
   }
 }
 
 class LocationListItem extends StatelessWidget {
-  LocationListItem(
-      {super.key,
-      required this.imageUrl,
-      required this.name,
-      required this.desc});
+  LocationListItem({
+    super.key,
+    required this.imageUrl,
+    required this.name,
+  });
 
   final String imageUrl;
   final String name;
-  final String desc;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
   @override
@@ -164,20 +183,20 @@ class LocationListItem extends StatelessWidget {
                             ),
                           ),
                           // DESC
-                          Padding(
-                            padding: const EdgeInsets.only(left: 7, right: 7),
-                            child: Container(
-                              alignment: Alignment.topLeft,
-                              padding: const EdgeInsets.only(left: 6),
-                              child: Text(desc.substring(1),
-                                  style: GoogleFonts.montserrat(
-                                    textStyle: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                    ),
-                                  )),
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 7, right: 7),
+                          //   child: Container(
+                          //     alignment: Alignment.topLeft,
+                          //     padding: const EdgeInsets.only(left: 6),
+                          //     child: Text(desc.substring(1),
+                          //         style: GoogleFonts.montserrat(
+                          //           textStyle: const TextStyle(
+                          //             fontWeight: FontWeight.w500,
+                          //             fontSize: 14,
+                          //           ),
+                          //         )),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],
@@ -372,7 +391,7 @@ class RenderParallax extends RenderBox
   @override
   void setupParentData(covariant RenderObject child) {
     if (child.parentData is! ParallaxParentData) {
-      child.parentData = ParallaxParentData() as ParentData?;
+      child.parentData = ParallaxParentData();
     }
   }
 

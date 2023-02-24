@@ -5,7 +5,6 @@ import 'package:travelapp/controller/global_controller.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travelapp/controller/list_controller.dart';
-import 'package:travelapp/views/feed.dart';
 import 'package:travelapp/views/navbar.dart';
 
 class HomePage extends StatefulWidget {

@@ -5,7 +5,7 @@ class Food {
 
   factory Food.fromJson(Map<String, dynamic> json) {
     return Food(
-      fotoUrl: json["foto_url"] ?? "xyz" as String,
+      fotoUrl: json["foto_url"] ?? "xyz",
       title: json["title"] as String,
     );
   }
