@@ -95,6 +95,7 @@ class _HomePageState extends State<HomePage> {
                             height: 20,
                           ),
                           FloatingActionButton(
+                            backgroundColor: Colors.blue.shade300,
                             // When the user presses the button, show an alert dialog containing
                             // the text that the user has entered into the text field.
                             onPressed: () async {
@@ -109,7 +110,7 @@ class _HomePageState extends State<HomePage> {
                               });
                             },
                             tooltip: 'Show me the value!',
-                            child: const Icon(Icons.search),
+                            child: const Icon(Icons.airplanemode_active),
                           ),
                         ],
                       ),

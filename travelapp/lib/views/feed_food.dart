@@ -6,14 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp/controller/list_controller.dart';
 import 'package:travelapp/views/error.dart';
 
-class FeedPage extends StatefulWidget {
-  const FeedPage({super.key});
+class FeedPageFood extends StatefulWidget {
+  const FeedPageFood({super.key});
 
   @override
-  State<FeedPage> createState() => _FeedPageState();
+  State<FeedPageFood> createState() => _FeedPageFoodState();
 }
 
-class _FeedPageState extends State<FeedPage> {
+class _FeedPageFoodState extends State<FeedPageFood> {
   ListController locationData = Get.find();
 
   final controller = ScrollController();
@@ -36,49 +36,35 @@ class _FeedPageState extends State<FeedPage> {
 
   @override
   Widget build(BuildContext context) {
-    return locationData.locationData.value.poi!.isEmpty
+    return locationData.locationData.value.food!.isEmpty
         ? const ErrorPage()
-        : Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.grey.shade800.withOpacity(0.5),
-                Colors.grey.shade200.withOpacity(0.5),
-                // Colors.deepPurple.shade800.withOpacity(0.9),
-                // Colors.deepPurple.shade300.withOpacity(0.9),
-              ],
-            )),
-            child: Scaffold(
-              extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                // elevation: 1,
-                title: const Text(
-                  "Places of Interests",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
+        : Scaffold(
+            extendBodyBehindAppBar: true,
+            appBar: AppBar(
+              backgroundColor: Colors.transparent,
+              elevation: 0.5,
+              title: const Text(
+                "Food",
+                style: TextStyle(
+                  color: Colors.black,
                 ),
               ),
-              backgroundColor: Colors.transparent,
-              body: CupertinoScrollbar(
-                thumbVisibility: true,
-                thickness: 10,
-                radius: const Radius.circular(15),
-                scrollbarOrientation: ScrollbarOrientation.right,
-                child: SingleChildScrollView(
-                  child: Column(
-                    children: [
-                      for (final poi in locationData.locationData.value.poi!)
-                        LocationListItem(
-                          imageUrl: poi.fotoUrl!,
-                          name: poi.title!.split(". ")[1],
-                          desc: poi.desc!,
-                        )
-                    ],
-                  ),
+            ),
+            backgroundColor: Colors.white,
+            body: CupertinoScrollbar(
+              thumbVisibility: true,
+              thickness: 10,
+              radius: const Radius.circular(10),
+              scrollbarOrientation: ScrollbarOrientation.right,
+              child: SingleChildScrollView(
+                child: Column(
+                  children: [
+                    for (final food in locationData.locationData.value.food!)
+                      LocationListItem(
+                        imageUrl: food.fotoUrl!,
+                        name: food.title!,
+                      )
+                  ],
                 ),
               ),
             ),
@@ -87,15 +73,14 @@ class _FeedPageState extends State<FeedPage> {
 }
 
 class LocationListItem extends StatelessWidget {
-  LocationListItem(
-      {super.key,
-      required this.imageUrl,
-      required this.name,
-      required this.desc});
+  LocationListItem({
+    super.key,
+    required this.imageUrl,
+    required this.name,
+  });
 
   final String imageUrl;
   final String name;
-  final String desc;
   final GlobalKey _backgroundImageKey = GlobalKey();
 
   @override
@@ -126,7 +111,7 @@ class LocationListItem extends StatelessWidget {
   void _detailCard(context) {
     showModalBottomSheet(
         isScrollControlled: true,
-        backgroundColor: Colors.transparent,
+        backgroundColor: const Color.fromARGB(255, 219, 222, 226),
         enableDrag: true,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.only(
@@ -135,14 +120,6 @@ class LocationListItem extends StatelessWidget {
         context: context,
         builder: (BuildContext context) {
           return Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [
-                  Colors.grey.shade900,
-                  Colors.grey.shade100,
-                ])),
             height: MediaQuery.of(context).size.height * 0.65,
             clipBehavior: Clip.none,
             child: Stack(
@@ -155,6 +132,7 @@ class LocationListItem extends StatelessWidget {
                     width: 23,
                     height: 23,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(15),
                       color: const Color.fromARGB(255, 240, 229, 229)
                           .withOpacity(0.5),
                     ),
@@ -181,7 +159,7 @@ class LocationListItem extends StatelessWidget {
                                 ),
                                 child: Image.network(
                                   imageUrl,
-                                  fit: BoxFit.fill,
+                                  fit: BoxFit.cover,
                                   width: 411,
                                   height: 300,
                                 ),
@@ -199,26 +177,26 @@ class LocationListItem extends StatelessWidget {
                                     textStyle: const TextStyle(
                                       height: 1.8,
                                       fontWeight: FontWeight.w900,
-                                      fontSize: 22,
+                                      fontSize: 20,
                                     ),
                                   )),
                             ),
                           ),
                           // DESC
-                          Padding(
-                            padding: const EdgeInsets.only(left: 7, right: 7),
-                            child: Container(
-                              alignment: Alignment.topLeft,
-                              padding: const EdgeInsets.only(left: 6),
-                              child: Text(desc.substring(1),
-                                  style: GoogleFonts.montserrat(
-                                    textStyle: const TextStyle(
-                                      fontWeight: FontWeight.w500,
-                                      fontSize: 14,
-                                    ),
-                                  )),
-                            ),
-                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.only(left: 7, right: 7),
+                          //   child: Container(
+                          //     alignment: Alignment.topLeft,
+                          //     padding: const EdgeInsets.only(left: 6),
+                          //     child: Text(desc.substring(1),
+                          //         style: GoogleFonts.montserrat(
+                          //           textStyle: const TextStyle(
+                          //             fontWeight: FontWeight.w500,
+                          //             fontSize: 14,
+                          //           ),
+                          //         )),
+                          //   ),
+                          // ),
                         ],
                       ),
                     ],

@@ -62,7 +62,7 @@ class _FeedPageHotelState extends State<FeedPageHotel> {
                     for (final hotel in locationData.locationData.value.hotel!)
                       LocationListItem(
                         imageUrl: hotel.fotoUrl!,
-                        name: hotel.title!.split(". ")[1],
+                        name: hotel.title!,
                       )
                   ],
                 ),
@@ -159,7 +159,7 @@ class LocationListItem extends StatelessWidget {
                                 ),
                                 child: Image.network(
                                   imageUrl,
-                                  fit: BoxFit.cover,
+                                  fit: BoxFit.contain,
                                   width: 411,
                                   height: 300,
                                 ),
