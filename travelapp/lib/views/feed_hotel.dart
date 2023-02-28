@@ -41,12 +41,13 @@ class _FeedPageHotelState extends State<FeedPageHotel> {
         : Scaffold(
             extendBodyBehindAppBar: true,
             appBar: AppBar(
-              backgroundColor: Colors.transparent,
+              centerTitle: true,
+              backgroundColor: Colors.indigo.shade400.withOpacity(0.9),
               elevation: 0.5,
               title: const Text(
                 "Hotels",
                 style: TextStyle(
-                  color: Colors.black,
+                  color: Colors.white,
                 ),
               ),
             ),

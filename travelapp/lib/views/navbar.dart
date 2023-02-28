@@ -36,7 +36,7 @@ class _NavBarState extends State<NavBar> {
           margin: EdgeInsets.only(left: 10, right: 10),
           backgroundColor: Colors.black87.withOpacity(0.4),
           unselectedItemColor: Colors.grey[300],
-          selectedItemColor: Colors.blue.shade200,
+          selectedItemColor: Colors.indigo.shade400,
           items: [
             DotNavigationBarItem(
               icon: Icon(

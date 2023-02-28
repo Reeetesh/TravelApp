@@ -4,6 +4,7 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp/controller/list_controller.dart';
+import 'package:travelapp/models/location_data.dart';
 import 'package:travelapp/views/error.dart';
 
 class FeedPage extends StatefulWidget {
@@ -40,34 +41,57 @@ class _FeedPageState extends State<FeedPage> {
         ? const ErrorPage()
         : Container(
             decoration: BoxDecoration(
-                gradient: LinearGradient(
-              begin: Alignment.topCenter,
-              end: Alignment.bottomCenter,
-              colors: [
-                Colors.grey.shade800.withOpacity(0.5),
-                Colors.grey.shade200.withOpacity(0.5),
-                // Colors.deepPurple.shade800.withOpacity(0.9),
-                // Colors.deepPurple.shade300.withOpacity(0.9),
-              ],
-            )),
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Colors.grey.shade800.withOpacity(0.5),
+                  Colors.grey.shade200.withOpacity(0.5),
+                  // Colors.deepPurple.shade800.withOpacity(0.9),
+                  // Colors.deepPurple.shade300.withOpacity(0.9),
+                ],
+              ),
+            ),
             child: Scaffold(
               extendBodyBehindAppBar: true,
-              appBar: AppBar(
-                backgroundColor: Colors.transparent,
-                // elevation: 1,
-                title: const Text(
-                  "Places of Interests",
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
-              ),
+              // appBar: AppBar(
+              //   centerTitle: true,
+              //   elevation: 0.5,
+              //   backgroundColor: Colors.indigo.shade400.withOpacity(0.9),
+              //   // elevation: 1,
+              //   title: const Text(
+              //     "Places of Interests",
+              //     style: TextStyle(
+              //       color: Colors.white,
+              //     ),
+              //   ),
+              // ),
               backgroundColor: Colors.transparent,
               body: CupertinoScrollbar(
                 thumbVisibility: true,
                 thickness: 10,
                 radius: const Radius.circular(15),
                 scrollbarOrientation: ScrollbarOrientation.right,
+                // child: CustomScrollView(
+                //   slivers: <Widget>[
+                //     SliverAppBar(
+                //       expandedHeight: 250,
+                //       flexibleSpace: FlexibleSpaceBar(
+                //         title: Text('$locationData', textScaleFactor: 1),
+                //       ),
+                //     ),
+                //     SliverList(
+                //       delegate: SliverChildBuilderDelegate((context, index) {
+                //         final poi = locationData.locationData.value.poi;
+                //         LocationListItem(
+                //           imageUrl: poi?.fotoUrl,
+                //           name: poi.title!.split(". "),
+                //           desc: poi.desc!,
+                //         );
+                //       }),
+                //     )
+                //   ],
+                // ),
                 child: SingleChildScrollView(
                   child: Column(
                     children: [
