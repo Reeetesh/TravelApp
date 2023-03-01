@@ -53,19 +53,19 @@ class _FeedPageState extends State<FeedPage> {
               ),
             ),
             child: Scaffold(
-              extendBodyBehindAppBar: true,
-              // appBar: AppBar(
-              //   centerTitle: true,
-              //   elevation: 0.5,
-              //   backgroundColor: Colors.indigo.shade400.withOpacity(0.9),
-              //   // elevation: 1,
-              //   title: const Text(
-              //     "Places of Interests",
-              //     style: TextStyle(
-              //       color: Colors.white,
-              //     ),
-              //   ),
-              // ),
+              extendBodyBehindAppBar: false,
+              appBar: AppBar(
+                centerTitle: true,
+                elevation: 0.5,
+                backgroundColor: Colors.indigo.shade400.withOpacity(0.9),
+                // elevation: 1,
+                title: const Text(
+                  "Places of Interests",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+              ),
               backgroundColor: Colors.transparent,
               body: CupertinoScrollbar(
                 thumbVisibility: true,
