@@ -179,6 +179,7 @@ class LocationListItem extends StatelessWidget {
                     width: 23,
                     height: 23,
                     decoration: BoxDecoration(
+                      borderRadius: BorderRadius.circular(30),
                       color: const Color.fromARGB(255, 240, 229, 229)
                           .withOpacity(0.5),
                     ),

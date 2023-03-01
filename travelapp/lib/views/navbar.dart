@@ -3,6 +3,7 @@
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
+import 'package:travelapp/views/favourites.dart';
 import 'package:travelapp/views/feed_food.dart';
 import 'package:travelapp/views/feed_poi.dart';
 import 'package:travelapp/views/feed_hotel.dart';
@@ -18,9 +19,10 @@ class _NavBarState extends State<NavBar> {
   int selectedIndex = 0;
 
   List<Widget> pageList = [
-    FeedPage(),
+    Favourites(),
     FeedPageHotel(),
     FeedPageFood(),
+    FeedPage()
   ];
 
   @override
@@ -31,10 +33,10 @@ class _NavBarState extends State<NavBar> {
       bottomNavigationBar: Padding(
         padding: const EdgeInsets.only(bottom: 5),
         child: DotNavigationBar(
-          borderRadius: 50,
+          borderRadius: 25,
           itemPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
           margin: EdgeInsets.only(left: 10, right: 10),
-          backgroundColor: Colors.grey.shade100.withOpacity(0.8),
+          backgroundColor: Colors.grey.shade300.withOpacity(0.8),
           unselectedItemColor: Colors.grey[500],
           selectedItemColor: Colors.indigo.shade400,
           items: [
@@ -56,6 +58,11 @@ class _NavBarState extends State<NavBar> {
                 size: 35,
               ),
             ),
+            DotNavigationBarItem(
+                icon: Icon(
+              Icons.favorite_outline,
+              size: 35,
+            ))
           ],
           currentIndex: selectedIndex,
           onTap: _onItemTapped,
