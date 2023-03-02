@@ -3,6 +3,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:travelapp/api/fetch.dart';
+import 'package:travelapp/api/food.dart';
+import 'package:travelapp/api/hotels.dart';
 import 'package:travelapp/controller/global_controller.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -116,7 +118,8 @@ class _HomePageState extends State<HomePage>
                                   } else {
                                     await animController.reverse();
                                     isForward = false;
-                                    // Future.delayed(Duration(milliseconds: 4000));
+                                    Future.delayed(
+                                        Duration(milliseconds: 4000));
                                     globalController.changeLoading();
                                     print(globalController.controller.text);
                                     await getPOI(
