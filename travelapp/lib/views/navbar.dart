@@ -19,10 +19,11 @@ class _NavBarState extends State<NavBar> {
   int selectedIndex = 0;
 
   List<Widget> pageList = [
-    Favourites(),
+    FeedPage(),
     FeedPageHotel(),
     FeedPageFood(),
-    FeedPage()
+    Favourites()
+    
   ];
 
   @override

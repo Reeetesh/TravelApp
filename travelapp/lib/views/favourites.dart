@@ -6,14 +6,14 @@ import 'package:google_fonts/google_fonts.dart';
 import '../controller/list_controller.dart';
 import 'error.dart';
 
-class Favourites extends StatefulWidget {
-  const Favourites({super.key});
+class FeedPage extends StatefulWidget {
+  const FeedPage({super.key});
 
   @override
-  State<Favourites> createState() => _FavouritesState();
+  State<FeedPage> createState() => _FeedPageState();
 }
 
-class _FavouritesState extends State<Favourites> {
+class _FeedPageState extends State<FeedPage> {
   final CarouselController _carouselController = CarouselController();
 
   int _currentIndex = 0;

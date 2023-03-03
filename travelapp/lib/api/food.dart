@@ -18,14 +18,14 @@ Future<List<Food>> extractFoodData(String? location) async {
 
       var foodTitle = document.getElementsByClassName('notranslate');
       var foodImgUrl = document.getElementsByClassName('restaurant-img');
-      var len = foodTitle.length;
-
+      var len = foodImgUrl.length;
       for (int i = 0; i < len; i++) {
         var title = (foodTitle[i].text.trim());
         var imgurl = (foodImgUrl[i].attributes['data-src']);
         listFood.add(Food(fotoUrl: imgurl, title: title));
+        print(listFood.length);
       }
-
+      
       return listFood;
 
       // print(responseString1.length);

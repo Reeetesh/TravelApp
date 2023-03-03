@@ -7,14 +7,14 @@ import 'package:travelapp/controller/list_controller.dart';
 import 'package:travelapp/models/location_data.dart';
 import 'package:travelapp/views/error.dart';
 
-class FeedPage extends StatefulWidget {
-  const FeedPage({super.key});
+class Favourites extends StatefulWidget {
+  const Favourites({super.key});
 
   @override
-  State<FeedPage> createState() => _FeedPageState();
+  State<Favourites> createState() => _FavouritesState();
 }
 
-class _FeedPageState extends State<FeedPage> {
+class _FavouritesState extends State<Favourites> {
   ListController locationData = Get.find();
 
   final controller = ScrollController();
