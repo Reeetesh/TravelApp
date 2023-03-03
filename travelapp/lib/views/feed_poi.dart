@@ -4,7 +4,6 @@ import 'package:flutter/rendering.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:travelapp/controller/list_controller.dart';
-import 'package:travelapp/models/location_data.dart';
 import 'package:travelapp/views/error.dart';
 
 class Favourites extends StatefulWidget {
@@ -258,7 +257,7 @@ class LocationListItem extends StatelessWidget {
   Widget _buildParallaxBackground(BuildContext context) {
     return Flow(
       delegate: ParallaxFlowDelegate(
-        scrollable: Scrollable.of(context)!,
+        scrollable: Scrollable.of(context),
         listItemContext: context,
         backgroundImageKey: _backgroundImageKey,
       ),
@@ -389,13 +388,13 @@ class Parallax extends SingleChildRenderObjectWidget {
 
   @override
   RenderObject createRenderObject(BuildContext context) {
-    return RenderParallax(scrollable: Scrollable.of(context)!);
+    return RenderParallax(scrollable: Scrollable.of(context));
   }
 
   @override
   void updateRenderObject(
       BuildContext context, covariant RenderParallax renderObject) {
-    renderObject.scrollable = Scrollable.of(context)!;
+    renderObject.scrollable = Scrollable.of(context);
   }
 }
 
