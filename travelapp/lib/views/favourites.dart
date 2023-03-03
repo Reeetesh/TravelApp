@@ -4,6 +4,7 @@ import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 import '../controller/list_controller.dart';
+import 'error.dart';
 
 class Favourites extends StatefulWidget {
   const Favourites({super.key});
@@ -21,7 +22,9 @@ class _FavouritesState extends State<Favourites> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return locationData.locationData.value.poi!.isEmpty
+        ? const ErrorPage()
+        : Scaffold(
       body: SizedBox(
         height: MediaQuery.of(context).size.height,
         child: Stack(

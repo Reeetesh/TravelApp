@@ -10,7 +10,7 @@ class SplashScreenController extends GetxController {
     await Future.delayed(const Duration(milliseconds: 300));
     animate.value = true;
     await Future.delayed(const Duration(milliseconds: 2500));
-    Get.to(()=>const HomePage());
+    Get.off(()=>const HomePage());
   }
 // instances for them to be called
 
