@@ -39,7 +39,7 @@ class _FeedPageHotelState extends State<FeedPageHotel> {
     return locationData.locationData.value.hotel!.isEmpty
         ? const ErrorPage()
         : Scaffold(
-            extendBodyBehindAppBar: true,
+            extendBodyBehindAppBar: false,
             appBar: AppBar(
               centerTitle: true,
               backgroundColor: Colors.indigo.shade400.withOpacity(0.9),
@@ -163,6 +163,9 @@ class LocationListItem extends StatelessWidget {
                                   fit: BoxFit.contain,
                                   width: 411,
                                   height: 300,
+                                  errorBuilder: (context, error, stackTrace) {
+                                    return Image.asset("assets/background.jpg");
+                                  },
                                 ),
                               ),
                             ],
@@ -221,6 +224,9 @@ class LocationListItem extends StatelessWidget {
           imageUrl,
           key: _backgroundImageKey,
           fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return Image.asset("assets/hoteltemp.jpg");
+          },
         ),
       ],
     );

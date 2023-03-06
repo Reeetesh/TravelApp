@@ -25,134 +25,146 @@ class _FeedPageState extends State<FeedPage> {
     return locationData.locationData.value.poi!.isEmpty
         ? const ErrorPage()
         : Scaffold(
-      body: SizedBox(
-        height: MediaQuery.of(context).size.height,
-        child: Stack(
-          children: [
-            Image.network(
-              locationData.locationData.value.poi![_currentIndex].fotoUrl!,
-              height: 500,
-              width: MediaQuery.of(context).size.width,
-              fit: BoxFit.cover,
-            ),
-            // Positioned(
-            //     top: 80,
-            //     child: Expanded(
-            //       child: Text(
-            //         locationData.locationData.value.poi![_currentIndex].title!
-            //             .split('. ')[1],
-            //         softWrap: false,
-            //         overflow: TextOverflow.ellipsis,
-            //         maxLines: 2,
-            //         textAlign: TextAlign.center,
-            //         style: TextStyle(
-            //           fontSize: 64,
-            //           color: Colors.white,
-            //         ),
-            //       ),
-            //     )),
-            Positioned(
-              child: Container(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.bottomCenter,
-                    end: Alignment.topCenter,
-                    colors: [
-                      Colors.grey.shade100.withOpacity(1),
-                      Colors.grey.shade100.withOpacity(1),
-                      Colors.grey.shade100.withOpacity(1),
-                      Colors.grey.shade100.withOpacity(1),
-                      Colors.grey.shade50.withOpacity(0),
-                      Colors.grey.shade100.withOpacity(0),
-                      Colors.grey.shade100.withOpacity(0),
-                      Colors.grey.shade100.withOpacity(0),
-                    ],
+            body: SizedBox(
+              height: MediaQuery.of(context).size.height,
+              child: Stack(
+                children: [
+                  Image.network(
+                    locationData
+                        .locationData.value.poi![_currentIndex].fotoUrl!,
+                    height: 500,
+                    width: MediaQuery.of(context).size.width,
+                    fit: BoxFit.cover,
                   ),
-                ),
-              ),
-            ),
-            Container(
-                padding: const EdgeInsets.only(top: 400),
-                // bottom: 50,
-                height: MediaQuery.of(context).size.height * 0.9,
-                width: double.infinity,
-                child: CarouselSlider(
-                  carouselController: _carouselController,
-                  options: CarouselOptions(
-                      height: 500.0,
-                      aspectRatio: 16 / 9,
-                      viewportFraction: 0.70,
-                      enlargeCenterPage: true,
-                      onPageChanged: (index, reason) {
-                        setState(() {
-                          _currentIndex = index;
-                        });
-                      }),
-                  items: locationData.locationData.value.poi!.map((move) {
-                    return Builder(
-                      builder: ((BuildContext context) {
-                        return Container(
-                          width: MediaQuery.of(context).size.width,
-                          margin: EdgeInsets.symmetric(horizontal: 10),
-                          decoration: BoxDecoration(
-                              color: Colors.black,
-                              borderRadius: BorderRadius.circular(30)),
-                          child: SingleChildScrollView(
-                            child: Column(
-                              children: [
-                                GestureDetector(
-                                  onTap: () {
-                                    _detailCard(context);
-                                  },
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(20),
-                                    child: Stack(
-                                      children: [
-                                        ColorFiltered(
-                                          colorFilter: ColorFilter.mode(
-                                            Colors.grey.shade400,
-                                            BlendMode.modulate,
-                                          ),
-                                          child: Image.network(
-                                            move.fotoUrl!,
-                                            fit: BoxFit.cover,
-                                            height: 380,
+                  // Positioned(
+                  //     top: 80,
+                  //     child: Expanded(
+                  //       child: Text(
+                  //         locationData.locationData.value.poi![_currentIndex].title!
+                  //             .split('. ')[1],
+                  //         softWrap: false,
+                  //         overflow: TextOverflow.ellipsis,
+                  //         maxLines: 2,
+                  //         textAlign: TextAlign.center,
+                  //         style: TextStyle(
+                  //           fontSize: 64,
+                  //           color: Colors.white,
+                  //         ),
+                  //       ),
+                  //     )),
+                  Positioned(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        gradient: LinearGradient(
+                          begin: Alignment.bottomCenter,
+                          end: Alignment.topCenter,
+                          colors: [
+                            Colors.grey.shade100.withOpacity(1),
+                            Colors.grey.shade100.withOpacity(1),
+                            Colors.grey.shade100.withOpacity(1),
+                            Colors.grey.shade100.withOpacity(1),
+                            Colors.grey.shade50.withOpacity(0),
+                            Colors.grey.shade100.withOpacity(0),
+                            Colors.grey.shade100.withOpacity(0),
+                            Colors.grey.shade100.withOpacity(0),
+                          ],
+                        ),
+                      ),
+                    ),
+                  ),
+                  Container(
+                      padding: const EdgeInsets.only(top: 400),
+                      // bottom: 50,
+                      height: MediaQuery.of(context).size.height * 0.9,
+                      width: double.infinity,
+                      child: CarouselSlider(
+                        carouselController: _carouselController,
+                        options: CarouselOptions(
+                            height: 500.0,
+                            aspectRatio: 1,
+                            viewportFraction: 0.70,
+                            enlargeCenterPage: true,
+                            onPageChanged: (index, reason) {
+                              setState(() {
+                                _currentIndex = index;
+                              });
+                            }),
+                        items: locationData.locationData.value.poi!.map((move) {
+                          return Builder(
+                            builder: ((BuildContext context) {
+                              return Container(
+                                width: MediaQuery.of(context).size.width,
+                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                decoration: BoxDecoration(
+                                    color: Colors.black,
+                                    borderRadius: BorderRadius.circular(30)),
+                                child: SingleChildScrollView(
+                                  child: Column(
+                                    children: [
+                                      GestureDetector(
+                                        onTap: () {
+                                          _detailCard(context);
+                                        },
+                                        child: ClipRRect(
+                                          borderRadius:
+                                              BorderRadius.circular(20),
+                                          child: Stack(
+                                            children: [
+                                              ColorFiltered(
+                                                colorFilter: ColorFilter.mode(
+                                                  Colors.grey.shade400,
+                                                  BlendMode.modulate,
+                                                ),
+                                                child: Image.network(
+                                                  move.fotoUrl!,
+                                                  fit: BoxFit.cover,
+                                                  height: 380,
+                                                ),
+                                              ),
+                                              Row(
+                                                children: [
+                                                  Expanded(
+                                                    // bottom: 30,
+                                                    // left: 10,
+                                                    child: Padding(
+                                                      padding:
+                                                          const EdgeInsets.only(
+                                                              top: 335,
+                                                              left: 10),
+                                                      child: Text(
+                                                        move.title!
+                                                            .split('. ')[1],
+                                                        softWrap: false,
+                                                        maxLines: 1,
+                                                        overflow: TextOverflow
+                                                            .ellipsis,
+                                                        style: TextStyle(
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            fontSize: 20,
+                                                            color:
+                                                                Colors.white),
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ],
                                           ),
                                         ),
-                                        Expanded(
-                                          // bottom: 30,
-                                          // left: 10,
-                                          child: Padding(
-                                            padding: const EdgeInsets.only(
-                                                top: 335, left: 10),
-                                            child: Text(
-                                              move.title!.split('. ')[1],
-                                              softWrap: false,
-                                              maxLines: 1,
-                                              overflow: TextOverflow.ellipsis,
-                                              style: TextStyle(
-                                                  fontWeight: FontWeight.bold,
-                                                  fontSize: 20,
-                                                  color: Colors.white),
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
+                                      ),
+                                    ],
                                   ),
                                 ),
-                              ],
-                            ),
-                          ),
-                        );
-                      }),
-                    );
-                  }).toList(),
-                ))
-          ],
-        ),
-      ),
-    );
+                              );
+                            }),
+                          );
+                        }).toList(),
+                      ))
+                ],
+              ),
+            ),
+          );
   }
 
   void _detailCard(context) {

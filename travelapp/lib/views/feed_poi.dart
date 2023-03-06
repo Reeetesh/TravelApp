@@ -266,6 +266,9 @@ class LocationListItem extends StatelessWidget {
           imageUrl,
           key: _backgroundImageKey,
           fit: BoxFit.cover,
+          errorBuilder: (context, error, stackTrace) {
+            return Image.asset("assets/poitemp.jpg");
+          },
         ),
       ],
     );

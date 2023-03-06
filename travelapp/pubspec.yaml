@@ -79,6 +79,9 @@ flutter:
     - assets/beach.png
     - assets/favourite.png
     - assets/settings.png
+    - assets/hoteltemp.jpg
+    - assets/foodtemp.jpg
+    - assets/poitemp.jpg
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

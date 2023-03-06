@@ -90,26 +90,34 @@ class _HomePageState extends State<HomePage>
                                     border: InputBorder.none,
                                   ),
                                   onSubmitted: (value) async {
-                                    if (!isForward) {
-                                    animController.forward();
-                                    isForward = true;
-                                  } else {
-                                    await animController.reverse();
-                                    isForward = false;
-                                    Future.delayed(
-                                        Duration(milliseconds: 4000));
-                                    globalController.changeLoading();
-                                    print(globalController.controller.text);
-                                    await getPOI(
-                                            globalController.controller.text.split(' ')[0])
-                                        .then(
-                                      (value) {
-                                        locationData.locationData.value = value;
+                                    if (value != "") {
+                                      print(globalController.controller.text);
+                                      if (!isForward) {
+                                        animController.forward();
+                                        isForward = true;
+                                      } else {
+                                        await animController.reverse();
+                                        isForward = false;
+                                        Future.delayed(
+                                            Duration(milliseconds: 4000));
                                         globalController.changeLoading();
-                                        Get.to(() => const NavBar());
-                                      },
-                                    );
-                                  }
+                                        print(globalController.controller.text);
+                                        await getPOI(globalController
+                                                .controller.text
+                                                .split(' ')[0])
+                                            .then(
+                                          (value) {
+                                            locationData.locationData.value =
+                                                value;
+                                            globalController.changeLoading();
+                                            Get.to(() => const NavBar());
+                                          },
+                                        );
+                                      }
+                                    } else {
+                                      animController.reverse();
+                                      isForward = false;
+                                    }
                                   },
                                 ),
                               ),
@@ -138,21 +146,29 @@ class _HomePageState extends State<HomePage>
                                     animController.forward();
                                     isForward = true;
                                   } else {
-                                    await animController.reverse();
-                                    isForward = false;
-                                    Future.delayed(
-                                        Duration(milliseconds: 4000));
-                                    globalController.changeLoading();
-                                    print(globalController.controller.text);
-                                    await getPOI(
-                                            globalController.controller.text.split(' ')[0])
-                                        .then(
-                                      (value) {
-                                        locationData.locationData.value = value;
-                                        globalController.changeLoading();
-                                        Get.to(() => const NavBar());
-                                      },
-                                    );
+                                    if (globalController.controller.text !=
+                                        "") {
+                                      await animController.reverse();
+                                      isForward = false;
+                                      Future.delayed(
+                                          Duration(milliseconds: 4000));
+                                      globalController.changeLoading();
+                                      print(globalController.controller.text);
+                                      await getPOI(globalController
+                                              .controller.text
+                                              .split(' ')[0])
+                                          .then(
+                                        (value) {
+                                          locationData.locationData.value =
+                                              value;
+                                          globalController.changeLoading();
+                                          Get.to(() => const NavBar());
+                                        },
+                                      );
+                                    } else {
+                                      await animController.reverse();
+                                      isForward = false;
+                                    }
                                   }
                                 },
                               ),
