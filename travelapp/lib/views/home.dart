@@ -3,8 +3,6 @@
 import 'package:flutter/material.dart';
 
 import 'package:travelapp/api/fetch.dart';
-import 'package:travelapp/api/food.dart';
-import 'package:travelapp/api/hotels.dart';
 import 'package:travelapp/controller/global_controller.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
@@ -26,6 +24,8 @@ class _HomePageState extends State<HomePage>
   late Animation<double> animation;
   late AnimationController animController;
   bool isForward = false;
+
+  // FocusNode inputNode = FocusNode();
 
   @override
   void initState() {
@@ -84,6 +84,8 @@ class _HomePageState extends State<HomePage>
                                 ),
                                 child: TextField(
                                   controller: globalController.controller,
+                                  // focusNode: inputNode,
+                                  // autofocus: true,
                                   cursorColor: Colors.white12,
                                   style: TextStyle(color: Colors.black),
                                   decoration: InputDecoration(
@@ -145,6 +147,8 @@ class _HomePageState extends State<HomePage>
                                   if (!isForward) {
                                     animController.forward();
                                     isForward = true;
+                                    // FocusScope.of(context)
+                                    //     .requestFocus(inputNode);
                                   } else {
                                     if (globalController.controller.text !=
                                         "") {

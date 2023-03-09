@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
-import 'package:flutter/widgets.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 
@@ -21,10 +18,10 @@ class ErrorPage extends StatelessWidget {
           ElevatedButton.icon(
             onPressed: () {
               // Respond to button press
-              Get.to(()=>const HomePage());
+              Get.to(() => const HomePage());
             },
-            icon: Icon(Icons.search, size: 18),
-            label: Text("Search different location"),
+            icon: const Icon(Icons.search, size: 18),
+            label: const Text("Search different location"),
           )
         ],
       ),

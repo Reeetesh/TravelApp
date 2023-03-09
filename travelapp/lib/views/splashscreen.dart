@@ -1,5 +1,6 @@
+// ignore_for_file: camel_case_types
+
 import 'package:flutter/material.dart';
-import 'package:flutter/src/widgets/container.dart';
 import 'package:get/get.dart';
 import 'package:lottie/lottie.dart';
 import 'package:travelapp/controller/splash_screen_controller.dart';

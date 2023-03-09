@@ -1,4 +1,3 @@
-import 'package:get/get.dart';
 import 'package:html/parser.dart' as parser;
 import 'package:http/http.dart' as http;
 import 'package:travelapp/models/location_food.dart';
@@ -7,7 +6,7 @@ Future<List<Food>> extractFoodData(String? location) async {
   // Getting the response from the targeted url
   List<Food> listFood = [];
   final response = await http.Client()
-      .get(Uri.parse("https://restaurant-guru.in/${location}#restaurant-list"));
+      .get(Uri.parse("https://restaurant-guru.in/$location#restaurant-list"));
 
   // Status Code 200 means response has been received successfully
   if (response.statusCode == 200) {
@@ -25,7 +24,7 @@ Future<List<Food>> extractFoodData(String? location) async {
         listFood.add(Food(fotoUrl: imgurl, title: title));
         print(listFood.length);
       }
-      
+
       return listFood;
 
       // print(responseString1.length);

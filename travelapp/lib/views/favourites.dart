@@ -13,6 +13,19 @@ class FeedPage extends StatefulWidget {
   State<FeedPage> createState() => _FeedPageState();
 }
 
+class CustomScrollPhysics extends ScrollPhysics {
+  static final SpringDescription customSpring =
+      SpringDescription.withDampingRatio(mass: 400, stiffness: 1);
+
+  @override
+  CustomScrollPhysics applyTo(ScrollPhysics? ancestor) {
+    return CustomScrollPhysics();
+  }
+
+  @override
+  SpringDescription get spring => customSpring;
+}
+
 class _FeedPageState extends State<FeedPage> {
   final CarouselController _carouselController = CarouselController();
 
@@ -73,15 +86,16 @@ class _FeedPageState extends State<FeedPage> {
                     ),
                   ),
                   Container(
-                      padding: const EdgeInsets.only(top: 400),
+                      padding: const EdgeInsets.only(top: 373),
                       // bottom: 50,
                       height: MediaQuery.of(context).size.height * 0.9,
                       width: double.infinity,
                       child: CarouselSlider(
                         carouselController: _carouselController,
                         options: CarouselOptions(
-                            height: 500.0,
-                            aspectRatio: 1,
+                            // scrollPhysics: CustomScrollPhysics(),
+                            height: 380.0,
+                            // aspectRatio: ,
                             viewportFraction: 0.70,
                             enlargeCenterPage: true,
                             onPageChanged: (index, reason) {
@@ -94,7 +108,8 @@ class _FeedPageState extends State<FeedPage> {
                             builder: ((BuildContext context) {
                               return Container(
                                 width: MediaQuery.of(context).size.width,
-                                margin: EdgeInsets.symmetric(horizontal: 10),
+                                margin:
+                                    const EdgeInsets.symmetric(horizontal: 10),
                                 decoration: BoxDecoration(
                                     color: Colors.black,
                                     borderRadius: BorderRadius.circular(30)),
@@ -138,7 +153,7 @@ class _FeedPageState extends State<FeedPage> {
                                                         maxLines: 1,
                                                         overflow: TextOverflow
                                                             .ellipsis,
-                                                        style: TextStyle(
+                                                        style: const TextStyle(
                                                             fontWeight:
                                                                 FontWeight.bold,
                                                             fontSize: 20,
@@ -242,7 +257,8 @@ class _FeedPageState extends State<FeedPage> {
                               padding: const EdgeInsets.only(left: 6),
                               child: Text(
                                   locationData.locationData.value
-                                      .poi![_currentIndex].title!,
+                                      .poi![_currentIndex].title!
+                                      .split(". ")[1],
                                   // overflow: TextOverflow.visible,
                                   maxLines: 2,
                                   softWrap: false,
@@ -263,8 +279,7 @@ class _FeedPageState extends State<FeedPage> {
                               padding: const EdgeInsets.only(left: 6),
                               child: Text(
                                   locationData.locationData.value
-                                      .poi![_currentIndex].desc!
-                                      .substring(1),
+                                      .poi![_currentIndex].desc!,
                                   style: GoogleFonts.montserrat(
                                     textStyle: const TextStyle(
                                       fontWeight: FontWeight.w500,

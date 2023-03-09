@@ -1,6 +1,3 @@
-// ignore_for_file: prefer_const_constructors
-
-import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:dot_navigation_bar/dot_navigation_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:travelapp/views/favourites.dart';
@@ -19,11 +16,10 @@ class _NavBarState extends State<NavBar> {
   int selectedIndex = 0;
 
   List<Widget> pageList = [
-    FeedPage(),
-    FeedPageHotel(),
-    FeedPageFood(),
-    Favourites()
-    
+    const FeedPage(),
+    const FeedPageHotel(),
+    const FeedPageFood(),
+    const Favourites()
   ];
 
   @override
@@ -35,32 +31,32 @@ class _NavBarState extends State<NavBar> {
         padding: const EdgeInsets.only(bottom: 5),
         child: DotNavigationBar(
           borderRadius: 25,
-          itemPadding: EdgeInsets.symmetric(vertical: 4, horizontal: 15),
-          margin: EdgeInsets.only(left: 10, right: 10),
+          itemPadding: const EdgeInsets.symmetric(vertical: 4, horizontal: 15),
+          margin: const EdgeInsets.only(left: 10, right: 10),
           backgroundColor: Colors.grey.shade300.withOpacity(0.8),
           unselectedItemColor: Colors.grey[500],
           selectedItemColor: Colors.indigo.shade400,
           items: [
             DotNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.beach_access_sharp,
                 size: 35,
               ),
             ),
             DotNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.hotel_rounded,
                 size: 35,
               ),
             ),
             DotNavigationBarItem(
-              icon: Icon(
+              icon: const Icon(
                 Icons.fastfood_sharp,
                 size: 35,
               ),
             ),
             DotNavigationBarItem(
-                icon: Icon(
+                icon: const Icon(
               Icons.favorite_outline,
               size: 35,
             ))
